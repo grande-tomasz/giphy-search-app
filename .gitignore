@@ -1,0 +1,5 @@
+# ESLint config file
+.eslintrc.json
+
+# Dependency directories
+node_modules/
