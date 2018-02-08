@@ -3,7 +3,7 @@ var GIPHY_PUB_KEY = "ZSvNlbGaK927tcIVoSsnbCS1qwPH2rlc";
 
 App = React.createClass({
   // getGif: function(searchingText, callback) {
-  getGif: (searchingText) => {
+  getGif: function(searchingText) {
     return new Promise((resolve, reject) => {
       var url = GIPHY_API_URL + "/v1/gifs/random?api_key=" + GIPHY_PUB_KEY + "&tag=" + searchingText;
       var xhr = new XMLHttpRequest();
@@ -24,7 +24,7 @@ App = React.createClass({
       xhr.send();
     });
   },
-  handleSearch: (searchingText) => {
+  handleSearch: function(searchingText) {
     this.setState({
       loading: true
     });
@@ -47,7 +47,7 @@ App = React.createClass({
       gif: {}
     };
   },
-  // cannot use arrow function below
+  // cannot use arrow functions for React class methods
   render: function() {
     var styles = {
       width: "90%",
