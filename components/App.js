@@ -30,7 +30,7 @@ App = React.createClass({
     });
     // this.getGif(searchingText, function(gif) {
     this.getGif(searchingText)
-      .then(gif => {
+      .then((gif) => {
         this.setState({
           loading: false,
           gif: gif,
@@ -47,6 +47,7 @@ App = React.createClass({
       gif: {}
     };
   },
+  // cannot use arrow functions for React class methods
   render: function() {
     var styles = {
       width: "90%",
@@ -55,9 +56,10 @@ App = React.createClass({
     };
     return (
       <div style={styles}>
-        <h1>Wyszukiwarka GIFow!</h1>
-        <p>Znajdź gifa na <a href="http://giphy.com">giphy</a>. Naciskaj enter, aby pobrać kolejne gify.</p>
+        <h1><a href="http://giphy.com" target="_blank">GIPHY</a> Search App</h1>
         <Search onSearch={this.handleSearch}/>
+        <br />
+        <small>use ENTER to search for the next gif</small>
         <Gif 
           loading={this.state.loading}
           url={this.state.gif.url}
