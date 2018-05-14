@@ -24,13 +24,15 @@ Search = React.createClass({
       maxWidth: "500px",
       fontSize: "1.2rem"
     };
-    return <input
-      style={styles}
-      type="text"
-      placeholder="type at least 3 characters to search for a gif"
-      value={this.state.searchingText}
-      onChange={this.handleChange}
-      onKeyUp={this.handleKeyUp}
-    />;
+    return (
+      <input
+        style={styles}
+        type="text"
+        placeholder="type at least 3 characters to search for a gif"
+        value={this.state.searchingText}
+        onChange={this.handleChange}
+        onKeyUp={this.handleKeyUp}
+      />
+    );
   }
 });

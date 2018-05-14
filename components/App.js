@@ -2,10 +2,14 @@ var GIPHY_API_URL = "https://api.giphy.com";
 var GIPHY_PUB_KEY = "ZSvNlbGaK927tcIVoSsnbCS1qwPH2rlc";
 
 App = React.createClass({
-  // getGif: function(searchingText, callback) {
   getGif: function(searchingText) {
     return new Promise((resolve, reject) => {
-      var url = GIPHY_API_URL + "/v1/gifs/random?api_key=" + GIPHY_PUB_KEY + "&tag=" + searchingText;
+      var url =
+        GIPHY_API_URL +
+        "/v1/gifs/random?api_key=" +
+        GIPHY_PUB_KEY +
+        "&tag=" +
+        searchingText;
       var xhr = new XMLHttpRequest();
       xhr.onload = () => {
         if (xhr.status === 200) {
@@ -19,7 +23,8 @@ App = React.createClass({
           reject(new Error(this.statusText));
         }
       };
-      xhr.onerror = () => reject(new Error(`XMLHttpRequest Error: ${this.statusText}`));
+      xhr.onerror = () =>
+        reject(new Error(`XMLHttpRequest Error: ${this.statusText}`));
       xhr.open("GET", url);
       xhr.send();
     });
@@ -28,9 +33,8 @@ App = React.createClass({
     this.setState({
       loading: true
     });
-    // this.getGif(searchingText, function(gif) {
     this.getGif(searchingText)
-      .then((gif) => {
+      .then(gif => {
         this.setState({
           loading: false,
           gif: gif,
@@ -38,7 +42,6 @@ App = React.createClass({
         });
       })
       .catch(error => console.error("Promise error: ", error));
-    // }.bind(this);
   },
   getInitialState() {
     return {
@@ -47,7 +50,7 @@ App = React.createClass({
       gif: {}
     };
   },
-  // cannot use arrow functions for React class methods
+
   render: function() {
     var styles = {
       width: "90%",
@@ -56,11 +59,16 @@ App = React.createClass({
     };
     return (
       <div style={styles}>
-        <h1><a href="http://giphy.com" target="_blank">GIPHY</a> Search App</h1>
-        <Search onSearch={this.handleSearch}/>
+        <h1>
+          <a href="http://giphy.com" target="_blank">
+            GIPHY
+          </a>{" "}
+          Search App
+        </h1>
+        <Search onSearch={this.handleSearch} />
         <br />
         <small>use ENTER to search for the next gif</small>
-        <Gif 
+        <Gif
           loading={this.state.loading}
           url={this.state.gif.url}
           sourceUrl={this.state.gif.sourceUrl}
